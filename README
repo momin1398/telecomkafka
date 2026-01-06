@@ -1,0 +1,19 @@
+//to create topic
+docker exec -it kafka kafka-topics --create --topic device-telemetry --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1
+
+
+
+
+
+//to Invoke post request
+
+Invoke-RestMethod `
+-Uri http://localhost:8080/telemetry `
+-Method POST `
+-Headers @{ "Content-Type" = "application/json" } `
+-Body '{
+  "device_name": "Cisco-Router-1",
+  "cpu": 92,
+  "memory": 65,
+  "temperature": 75
+}'
